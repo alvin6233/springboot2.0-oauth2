@@ -2,14 +2,16 @@ server:
   port: 8888
 spring:
   redis:
-    host: localhost
+    host: 172.16.6.248
     port: 6379
+    password: alvin
     jedis:
       pool:
         max-active: 8
         max-wait: -1s
         min-idle: 0
         max-idle: 8
+    database: 4
 logging:
   level:
     org.springframework: debug
