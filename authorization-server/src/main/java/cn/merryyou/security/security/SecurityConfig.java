@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 用于密码加密，BCryptPasswordEncoder对相同的密码生成的结果每次都是不一样的
+     *
      * @return
      */
     @Bean
@@ -43,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login") //登录页面form表单的action路径
                 .and()
                 .authorizeRequests() //授权配置
-                .antMatchers("/login.html", "/login").permitAll() //登录页面的相关请求不被拦截
+                .antMatchers("/authentication/require", "/login.html", "/login").permitAll() //登录页面的相关请求不被拦截
                 .anyRequest()  // 所有其它请求
                 .authenticated() // 都需要认证
                 .and()
