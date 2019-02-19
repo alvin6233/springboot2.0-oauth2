@@ -25,6 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return manager;
     }
 
+    /**
+     * 用于密码加密，BCryptPasswordEncoder对相同的密码生成的结果每次都是不一样的
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -33,8 +37,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//                .formLogin().and()
-                .httpBasic().and()
-                .csrf().disable();
+                .formLogin()
+//                .httpBasic().and()  // HTTP Basic
+                .loginPage("/login.html") //登录页面的请求URL
+                .loginProcessingUrl("/login") //登录页面form表单的action路径
+                .and()
+                .authorizeRequests() //授权配置
+                .antMatchers("/login.html", "/login").permitAll() //登录页面的相关请求不被拦截
+                .anyRequest()  // 所有其它请求
+                .authenticated() // 都需要认证
+                .and()
+                .csrf().disable(); //关闭CSRF跨域攻击防御
     }
 }
