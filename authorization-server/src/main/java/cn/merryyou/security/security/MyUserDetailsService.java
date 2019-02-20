@@ -43,6 +43,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
         return new User(username, user.getPassword(), user.isEnabled(),
                 user.isAccountNonExpired(), user.isCredentialsNonExpired(),
-                user.isAccountNonLocked(), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+                user.isAccountNonLocked(), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
     }
 }

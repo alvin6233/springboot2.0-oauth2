@@ -2,9 +2,9 @@ server:
   port: 8888
 spring:
   redis:
-    host: 172.16.6.248
+    host: 127.0.0.1
     port: 6379
-    password: alvin
+    password:
     jedis:
       pool:
         max-active: 8

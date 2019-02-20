@@ -8,7 +8,6 @@ import java.io.Serializable;
  * @description: new world begin.
  */
 public class UserDomain implements Serializable {
-    private static final long serialVersionUID = 3497935890426858541L;
 
     private String userName;
 
@@ -22,9 +21,7 @@ public class UserDomain implements Serializable {
 
     private boolean enabled= true;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+
 
     public String getUserName() {
         return userName;
