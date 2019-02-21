@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>出错了</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="//i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css"/>
+    <style>
+        .block{
+            position: relative;
+        }
+        .ui-notice{
+            position: relative;
+            padding:20px 15px;
+            box-sizing: border-box;
+        }
+        .ui-notice p{
+            color:#333;
+            font-weight: 600;
+        }
+        .ui-btn-primary{
+            background-color: #02cd93;
+            border-color:#02cd93;;
+        }
+        .ui-notice-btn{
+            padding:50px 0px 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="block">
+    <section class="ui-notice">
+        <i class="icon icon-notice"></i>
+        <div class="ui-notice-btn">
+            <div>
+                <h1>${errorSummary}</h1>
+            </div>
+            <div>
+                <input class="ui-btn-primary ui-btn-lg ui-btn-primary" onclick="/login.html"  name='返回登录' value='授权' type='button'/>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

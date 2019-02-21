@@ -14,11 +14,13 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.endpoint.AuthorizationEndpoint;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +56,22 @@ public class MerryyouAuthorizationServerConfig extends AuthorizationServerConfig
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+//    @Autowired
+//    private AuthorizationEndpoint authorizationEndpoint;
+//    @PostConstruct
+//    public void init() {
+//        // 自定义授权跳转
+//        authorizationEndpoint.setUserApprovalPage("forward:/auth/confirm_page");
+//        //自定义授权错误跳转
+//        authorizationEndpoint.setErrorPage("forward:/auth/error");
+//    }
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager)
+//                .pathMapping("/oauth/confirm_access", "/auth/confirm_page")
+//                .pathMapping("/error", "/auth/error")
                 .userDetailsService(userDetailsService);
         //扩展token返回结果
         if (jwtAccessTokenConverter != null && jwtTokenEnhancer != null) {

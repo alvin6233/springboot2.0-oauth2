@@ -82,16 +82,16 @@ public class SpringBoot2Oauth2Application {
      */
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-    @GetMapping("/authentication/require")
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public String requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        SavedRequest savedRequest = requestCache.getRequest(request, response);
-        if (savedRequest != null) {
-            String targetUrl = savedRequest.getRedirectUrl();
-            if (StringUtils.endsWithIgnoreCase(targetUrl, ".html"))
-                redirectStrategy.sendRedirect(request, response, "/login.html");
-        }
-        return "访问的资源需要身份认证！";
-    }
+//    @GetMapping("/authentication/require")
+//    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+//    public String requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        SavedRequest savedRequest = requestCache.getRequest(request, response);
+//        if (savedRequest != null) {
+//            String targetUrl = savedRequest.getRedirectUrl();
+//            if (StringUtils.endsWithIgnoreCase(targetUrl, ".html"))
+//                redirectStrategy.sendRedirect(request, response, "/login.html");
+//        }
+//        return "访问的资源需要身份认证！";
+//    }
 
 }

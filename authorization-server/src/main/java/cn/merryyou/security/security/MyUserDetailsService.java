@@ -23,26 +23,26 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        return new User(username, passwordEncoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
-//    }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        /**
-         * 模拟用户，替代数据库获取用户信息
-         */
-        UserDomain user = new UserDomain();
-        user.setUserName(username);
-        user.setPassword(this.passwordEncoder.encode("123456"));
-        // 输出加密后的密码
-        System.out.println(user.getPassword());
-
-        return new User(username, user.getPassword(), user.isEnabled(),
-                user.isAccountNonExpired(), user.isCredentialsNonExpired(),
-                user.isAccountNonLocked(), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+        return new User(username, passwordEncoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
     }
+
+
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        /**
+//         * 模拟用户，替代数据库获取用户信息
+//         */
+//        UserDomain user = new UserDomain();
+//        user.setUserName(username);
+//        user.setPassword(this.passwordEncoder.encode("123456"));
+//        // 输出加密后的密码
+//        System.out.println(user.getPassword());
+//
+//        return new User(username, user.getPassword(), user.isEnabled(),
+//                user.isAccountNonExpired(), user.isCredentialsNonExpired(),
+//                user.isAccountNonLocked(), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+//    }
 }

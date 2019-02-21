@@ -88,10 +88,10 @@
     color: #ef3b3a;
 }
 body {
-    background: #76b852; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #76b852, #8dc26f);
-    background: -moz-linear-gradient(right, #76b852, #8dc26f);
-    background: -o-linear-gradient(right, #76b852, #8dc26f);
-    background: linear-gradient(to left, #76b852, #8dc26f);
+    background: #ffffff; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #ffffff, #ffffff);
+    background: -moz-linear-gradient(right, #ffffff, #ffffff);
+    background: -o-linear-gradient(right, #ffffff, #ffffff);
+    background: linear-gradient(to left, #ffffff, #ffffff);
     font-family: Lato,"PingFang SC","Microsoft YaHei",sans-serif;
 }

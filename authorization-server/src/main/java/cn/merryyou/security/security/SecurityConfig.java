@@ -48,15 +48,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-//                .httpBasic().and()  // HTTP Basic
-                .loginPage("/login.html") //登录页面的请求URL
-                .loginProcessingUrl("/login") //登录页面form表单的action路径
-                .successHandler(appLoginInSuccessHandler)
+//                .httpBasic()  // HTTP Basic
+//                .loginPage("/login") //登录页面的请求URL
+//                .failureUrl("/oauth/login?error")
+//                .loginProcessingUrl("/login") //登录页面form表单的action路径
+//                .successHandler(appLoginInSuccessHandler)
                 .and()
+//                .logout().logoutSuccessUrl("/oauth/login?logout")
+//                .and()
                 .authorizeRequests() //授权配置
-                .antMatchers("/css/**","/authentication/require", "/login.html", "/login").permitAll() //登录页面的相关请求不被拦截
+                .antMatchers("/css/**","/oauth/authorize","/login","/oauth/index","/oauth/index","/auth/confirm_page", "/login.html", "/auth/error","/oauth/**","/oauth/authorize").permitAll() //登录页面的相关请求不被拦截
                 .anyRequest()  // 所有其它请求
-                .authenticated() // 都需要认证
+                .permitAll() // 都需要认证
                 .and()
                 .csrf().disable(); //关闭CSRF跨域攻击防御
     }
