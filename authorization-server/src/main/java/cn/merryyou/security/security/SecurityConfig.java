@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() //授权配置
                 .antMatchers("/css/**","/oauth/authorize","/login","/oauth/index","/oauth/index","/auth/confirm_page", "/login.html", "/auth/error","/oauth/**","/oauth/authorize").permitAll() //登录页面的相关请求不被拦截
                 .anyRequest()  // 所有其它请求
-                .permitAll() // 都需要认证
+                .authenticated() // 都需要认证
                 .and()
                 .csrf().disable(); //关闭CSRF跨域攻击防御
     }
