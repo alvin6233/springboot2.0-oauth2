@@ -70,8 +70,8 @@ public class MerryyouAuthorizationServerConfig extends AuthorizationServerConfig
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager)
-//                .pathMapping("/oauth/confirm_access", "/auth/confirm_page")
-//                .pathMapping("/error", "/auth/error")
+                .pathMapping("/oauth/confirm_access", "/auth/confirm_page")
+                .pathMapping("/oauth/error", "/auth/error")
                 .userDetailsService(userDetailsService);
         //扩展token返回结果
         if (jwtAccessTokenConverter != null && jwtTokenEnhancer != null) {
@@ -102,17 +102,17 @@ public class MerryyouAuthorizationServerConfig extends AuthorizationServerConfig
                         .accessTokenValiditySeconds(config.getAccessTokenValiditySeconds())
                         .refreshTokenValiditySeconds(60 * 60 * 24 * 15)
                         .authorizedGrantTypes("refresh_token", "password", "authorization_code")//OAuth2支持的验证模式
-                        .redirectUris("http://www.merryyou.cn")
+                        .redirectUris("http://test.cn")
                         .scopes("all");
+//                        .autoApprove(false);//true授权为同意且自动跳转
             }
         }
     }
 
 //    @Override
 //    public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
-//        //允许表单认证
-//        oauthServer.allowFormAuthenticationForClients();
-//        oauthServer.passwordEncoder(passwordEncoder);
+//        oauthServer.tokenKeyAccess("isAnonymous()").checkTokenAccess("isAnonymous()")
+//                .allowFormAuthenticationForClients();
 //    }
 
     /**

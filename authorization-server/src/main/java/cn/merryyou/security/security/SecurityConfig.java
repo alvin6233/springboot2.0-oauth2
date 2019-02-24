@@ -46,21 +46,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .formLogin()
-//                .httpBasic()  // HTTP Basic
+        http.formLogin().permitAll().and().authorizeRequests().anyRequest().authenticated();//.and().userDetailsService(userDetailsService);
+    }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .formLogin()
+////                .httpBasic()  // HTTP Basic
 //                .loginPage("/login") //登录页面的请求URL
 //                .failureUrl("/oauth/login?error")
 //                .loginProcessingUrl("/login") //登录页面form表单的action路径
 //                .successHandler(appLoginInSuccessHandler)
-                .and()
+//                .and()
 //                .logout().logoutSuccessUrl("/oauth/login?logout")
 //                .and()
-                .authorizeRequests() //授权配置
-                .antMatchers("/css/**","/oauth/authorize","/login","/oauth/index","/oauth/index","/auth/confirm_page", "/login.html", "/auth/error","/oauth/**","/oauth/authorize").permitAll() //登录页面的相关请求不被拦截
-                .anyRequest()  // 所有其它请求
-                .authenticated() // 都需要认证
-                .and()
-                .csrf().disable(); //关闭CSRF跨域攻击防御
-    }
+//                .authorizeRequests() //授权配置
+//                .antMatchers("/user/me","/css/**","/oauth/authorize","/login","/oauth/index","/oauth/index","/auth/confirm_page", "/login.html", "/auth/error","/oauth/**","/oauth/authorize").permitAll() //登录页面的相关请求不被拦截
+//                .anyRequest()  // 所有其它请求
+//                .authenticated() // 都需要认证
+//                .and()
+//                .csrf().disable(); //关闭CSRF跨域攻击防御
+//    }
 }

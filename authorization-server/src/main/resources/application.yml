@@ -12,9 +12,9 @@ spring:
         min-idle: 0
         max-idle: 8
     database: 4
-    thymeleaf:
-        prefix: classpath:/static/
-        suffix: .html
+  thymeleaf:
+    prefix: classpath:/static/
+    suffix: .html
 logging:
   level:
     org.springframework: debug

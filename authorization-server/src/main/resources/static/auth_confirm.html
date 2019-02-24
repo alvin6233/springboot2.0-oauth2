@@ -6,26 +6,30 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="//i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css"/>
     <style>
-        .block{
+        .block {
             position: relative;
         }
-        .ui-notice{
+
+        .ui-notice {
             position: relative;
-            padding:20px 15px;
+            padding: 20px 15px;
             box-sizing: border-box;
         }
-        .ui-notice p{
-            color:#333;
+
+        .ui-notice p {
+            color: #333;
             font-weight: 600;
         }
-        .ui-btn-primary{
+
+        .ui-btn-primary {
             background-color: #02cd93;
-            border-color:#02cd93;
+            border-color: #02cd93;
             width: 14%;
             margin-left: 43%;
         }
-        .ui-notice-btn{
-            padding:50px 0px 15px;
+
+        .ui-notice-btn {
+            padding: 50px 0px 15px;
         }
     </style>
 </head>
@@ -37,14 +41,36 @@
         <div class="ui-notice-btn">
             <form id='confirmationForm' name='confirmationForm' action="/oauth/authorize" method='post'>
                 <input name='user_oauth_approval' value='true' type='hidden'/>
+                <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}"/>
                 <!--写好授权访问领域-->
-                <input th:name="${s}" value="true" type="hidden" th:each="s : ${scopeList}"/>
-                <input class="ui-btn-primary ui-btn-lg ui-btn-primary" name='authorize' value='授权' type='submit'/>
-                <!-- <input type="radio" name="scope.user_info" value="true">授权</input>
-                 <input type="radio" name="scope.user_info" value="false" checked>取消</input> -->
+                <div id="allCheck" th:each="s : ${scopeList}">
+                    <label th:text="${s}"></label>:<input  th:name="${s}" value="false" type="checkbox"
+                                                          onclick="check('allCheck')"/>
+                </div>
+
+                <input class="ui-btn-primary ui-btn-lg ui-btn-primary" name='authorize' value='确认' type='submit'/>
             </form>
         </div>
     </section>
 </div>
 </body>
+<script>
+    function $(t)
+    {
+        return document.getElementById(t);
+    }
+    function check(id)
+    {
+        var checkobj=$(id)
+        var box=checkobj.getElementsByTagName('input');
+        for(var i=0;i<box.length;i++)
+        {
+            if (box[i].checked == true) {
+                box[i].value = true;
+            } else {
+                box[i].value = false;
+            }
+        }
+    }
+</script>
 </html>

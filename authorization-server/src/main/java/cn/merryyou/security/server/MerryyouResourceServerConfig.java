@@ -9,27 +9,27 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 /**
  * Created on 2018/1/17.
- *
+ * 资源权限配置，若授权服务也提供资源服务
  * @author zlf
  * @since 1.0
  */
-@Configuration
-@EnableResourceServer
-public class MerryyouResourceServerConfig extends ResourceServerConfigurerAdapter {
-
-    /**
-     * 自定义登录成功处理器
-     */
-    @Autowired
-    private AuthenticationSuccessHandler appLoginInSuccessHandler;
-
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
+//@Configuration
+//@EnableResourceServer
+//public class MerryyouResourceServerConfig extends ResourceServerConfigurerAdapter {
+//
+//    /**
+//     * 自定义登录成功处理器
+//     */
+//    @Autowired
+//    private AuthenticationSuccessHandler appLoginInSuccessHandler;
+//
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//        http.formLogin()
 //                .successHandler(appLoginInSuccessHandler)//登录成功处理器
-                .and()
-                .authorizeRequests().anyRequest().authenticated().and()
-                .csrf().disable();
-    }
-
-}
+//                .and()
+//                .authorizeRequests().anyRequest().authenticated().and()
+//                .csrf().disable();
+//    }
+//
+//}

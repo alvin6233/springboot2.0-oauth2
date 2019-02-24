@@ -20,7 +20,9 @@
         }
         .ui-btn-primary{
             background-color: #02cd93;
-            border-color:#02cd93;;
+            border-color: #02cd93;
+            width: 14%;
+            margin-left: 43%;
         }
         .ui-notice-btn{
             padding:50px 0px 15px;
@@ -33,13 +35,19 @@
         <i class="icon icon-notice"></i>
         <div class="ui-notice-btn">
             <div>
-                <h1>${errorSummary}</h1>
+                <p style="color:red;">出错了！不能继续授权操作！</p>
+                <p th:utext="${errorSummary}">errorSummary </p>
             </div>
             <div>
-                <input class="ui-btn-primary ui-btn-lg ui-btn-primary" onclick="/login.html"  name='返回登录' value='授权' type='button'/>
+                <input class="ui-btn-primary ui-btn-lg ui-btn-primary" onclick="login()"  name='返回登录' value='返回登录' type='button'/>
             </div>
         </div>
     </section>
 </div>
 </body>
+<script>
+    function login() {
+        window.location.href = "/login";
+    }
+</script>
 </html>
