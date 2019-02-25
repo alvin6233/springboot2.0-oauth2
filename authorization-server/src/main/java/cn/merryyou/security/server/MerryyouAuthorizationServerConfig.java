@@ -56,6 +56,7 @@ public class MerryyouAuthorizationServerConfig extends AuthorizationServerConfig
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    //路径映射，该方法没尝试成功
 //    @Autowired
 //    private AuthorizationEndpoint authorizationEndpoint;
 //    @PostConstruct
@@ -66,12 +67,17 @@ public class MerryyouAuthorizationServerConfig extends AuthorizationServerConfig
 //        authorizationEndpoint.setErrorPage("forward:/auth/error");
 //    }
 
+    /**
+     * token存储、路径映射、用户认证设置等服务器端
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager)
-                .pathMapping("/oauth/confirm_access", "/auth/confirm_page")
-                .pathMapping("/oauth/error", "/auth/error")
+                .pathMapping("/oauth/confirm_access", "/auth/confirm_page") //自定义授权页
+                .pathMapping("/oauth/error", "/auth/error") //自定义错误页
                 .userDetailsService(userDetailsService);
         //扩展token返回结果
         if (jwtAccessTokenConverter != null && jwtTokenEnhancer != null) {
@@ -87,7 +93,7 @@ public class MerryyouAuthorizationServerConfig extends AuthorizationServerConfig
     }
 
     /**
-     * 配置客户端一些信息
+     * 配置客户端一些信息，可改造从数据库读取
      *
      * @param clients
      * @throws Exception
@@ -108,12 +114,6 @@ public class MerryyouAuthorizationServerConfig extends AuthorizationServerConfig
             }
         }
     }
-
-//    @Override
-//    public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
-//        oauthServer.tokenKeyAccess("isAnonymous()").checkTokenAccess("isAnonymous()")
-//                .allowFormAuthenticationForClients();
-//    }
 
     /**
      * springSecurity 授权表达式，
